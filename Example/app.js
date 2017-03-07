@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import { createAnimatableComponent, View, Text } from 'react-native-animatable';
+import { createAnimatableComponent, View, Text, Image } from 'react-native-animatable';
 import AnimationCell from './cell';
 
 const AnimatableListView = createAnimatableComponent(ListView);
@@ -173,6 +173,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
   },
+  imageContainer: {
+    paddingVertical: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    height: 20,
+    width: 20,
+    tintColor: 'blue',
+  },
+  imageToggledOn: {
+    tintColor: 'tomato',
+  }
 });
 
 export default class ExampleView extends Component {
@@ -240,6 +253,16 @@ export default class ExampleView extends Component {
             Toggle me!
           </Text>
         </TouchableWithoutFeedback>
+        <View
+          style={styles.imageContainer}
+        >
+          <Image
+            source={require('./icon-home.png')}
+            transition={'tintColor'}
+            style={[styles.image, toggledOn && styles.imageToggledOn]}
+            useNativeDriver
+          />
+        </View>
         <Text animation="zoomInDown" delay={700} style={styles.instructions}>
           Tap one of the following to animate for {duration} ms
         </Text>
